@@ -1,9 +1,9 @@
 import React from "react";
-import SearchContainer from "./containers/SearchContainer/SearchContainer";
+import Home from "./containers/Home/Home";
 import "./App.css";
 
 const App = () => {
-  return <SearchContainer />;
+  return <Home />;
 };
 
 export default App;
