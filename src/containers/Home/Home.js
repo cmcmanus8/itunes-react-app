@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import ResultsList from '../../components/ResultsList/ResultsList';
+import Player from "../../components/Player/Player";
 
 const Home = () => {
   const [results, setResults] = useState(null);
@@ -72,6 +73,10 @@ const Home = () => {
   const handleClickItem = (item) => {
     setCurrentItem(item);
   }
+  
+  const hidePlayer =() => {
+    setCurrentItem(null)
+  }
 
   return (
     <div className="page-container">
@@ -83,6 +88,12 @@ const Home = () => {
           loading={loading} 
           noResults={noResults}
           error={error}
+        />
+        <Player
+          item={currentItem}
+          title={""}
+          show={currentItem ? true : false}
+          onHide={hidePlayer}
         />
       </div>
     </div>
