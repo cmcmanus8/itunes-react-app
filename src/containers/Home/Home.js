@@ -84,9 +84,9 @@ const Home = () => {
   }
 
   return (
-    <div className="page-container">
+    <div className={`page-container ${results && "results-shown"}`}>
       <div className="page-content">
-        <SearchBar onClick={handleSearchSubmit} className="search-bar" />
+        <SearchBar onClick={handleSearchSubmit} className="search-bar" results={results} />
         <ResultsList
           results={results}
           onClickItem={handleClickItem}

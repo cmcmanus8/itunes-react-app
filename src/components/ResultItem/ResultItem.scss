@@ -1,0 +1,76 @@
+@import "../../styles/colors.scss";
+
+.list-item {
+  width: 152px;
+  // border: 1px solid red;
+  margin: 10px;
+  padding-bottom: 10px;
+
+  .cover-thumbnail {
+    transition: transform 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      transition: transform 0.2s linear;
+      transform: scale(1.1);
+    };
+  }
+
+  .item-details {
+    line-height: 140%;
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    color: $medium-grey;
+
+    .song-title {
+      padding-top: 5px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      &:hover {
+        color: $aqua;
+      }
+    }
+
+    .artist {
+      font-size: 0.8rem;
+      color: $medium-grey;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .more-details-wrapper {
+      color: $light-grey;
+      text-overflow: ellipsis;
+      font-size: 0.8rem;
+    }
+
+    .more-details {
+      border: none;
+      padding: 4px;
+      border-radius: 3px;
+      background-color: $lighter-grey;
+      cursor: pointer;
+      margin: 5px 2px;
+
+      &:hover {
+        transition: box-shadow 0.1s linear;
+        box-shadow: $medium-grey 0px 2px 4px, black 0px 1px 2px;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+
+
+
+
+
+  }
+}

@@ -4,7 +4,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './SearchBar.scss';
 
-const SearchBar = ({ onClick }) => {
+const SearchBar = ({ onClick, results }) => {
   const [formInput, setFormInput] = useState('');
   const [searchData, setSearchData] = useState([]);
 
@@ -28,7 +28,8 @@ const SearchBar = ({ onClick }) => {
   };
 
   return (
-    <div className="search-container">
+    <div className={`search-container ${results && "results"}`}>
+      {console.log(results)}
       <input
         id="search"
         type="search"

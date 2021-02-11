@@ -7,12 +7,12 @@ import './ResultsList.scss';
 
 const ResultsList = ({ loading, onClickItem, results, noResults, error }) => {
   return (
-    <div className="results-container">
+    <div className={`results-container ${loading && "loading"}`}>
       {loading ? (
         <FontAwesomeIcon className="loading-icon" icon={faHeadphonesAlt} />
         ) : (
-        error ? "error getting results..." : (
-          noResults ? "no results found..." : (
+        error ? "Error getting results..." : (
+          noResults ? "No results found..." : (
             <ul className="results-list">
               {(results || []).map((result) => (
                 <ResultItem key={result.trackId} item={result} onClickItem={onClickItem} />
