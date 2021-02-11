@@ -1,0 +1,48 @@
+@import "../../styles/colors.scss";
+
+.search-container {
+  width: 50vw;
+  height: 60px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  background: $lighter-grey;
+  min-width: 200px;
+  max-width: 700px;
+  padding-left: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.6); /*ridge effect*/
+  font-size: large;
+  outline: none;
+
+  #search {
+    border: none;
+    font-size: 2rem;
+    margin: 0;
+    background: none;
+    width: 100%;
+    color: $medium-grey;
+
+    &::placeholder {
+      color: $light-grey;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .search-button {
+    border: none;
+    width: 50px;
+    background: none;
+    font-size: 2rem;
+    margin: 0 10px; 
+
+    .search-icon {
+      color: $light-grey;
+    }
+
+
+    cursor: pointer;
+  }
+}

@@ -1,19 +1,24 @@
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './SearchBar.scss';
 
-const SearchBar = memo(({ onClick, onKeyDown }) => {
+const SearchBar = ({ onClick }) => {
   const [formInput, setFormInput] = useState('');
   const [searchData, setSearchData] = useState([]);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+        handleSearch(formInput)
+    }
+  }
 
   const handleChange = (e) => {
     setFormInput(e.target.value);
   }
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(formInput);
-
+  const handleSearch = () => {
     // remove whitespace
     const searchSubmit = formInput.trim();
     setSearchData([...searchData, searchSubmit]);
@@ -23,20 +28,20 @@ const SearchBar = memo(({ onClick, onKeyDown }) => {
   };
 
   return (
-    <div className="search-bar">
+    <div className="search-container">
       <input
         id="search"
         type="search"
         value={formInput}
         onChange={handleChange}
-        onKeyDown={onKeyDown}
-        placeholder="Search..."
+        placeholder="Search iTunes..."
+        onKeyDown={handleKeyDown}
       />
       <button type="button" className="search-button" onClick={handleSearch}>
-        Search
+        <FontAwesomeIcon className="search-icon" icon={faSearch} />
       </button>
     </div>
   );
-});
+};
 
 export default SearchBar;

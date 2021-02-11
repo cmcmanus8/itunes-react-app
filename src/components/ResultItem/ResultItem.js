@@ -19,7 +19,7 @@ const ResultItem = ({ item, onClickItem }) => {
     onClickItem(item);
   }, [onClickItem, item]);
 
-  const dateToDisplay = dateFormat(Date.parse(item.releaseDate), "mmm dS, yyyy");
+  const dateToDisplay = dateFormat(Date.parse(item.releaseDate), "yyyy");
   const songLength = (lengthInMs) => {
     const mins = Math.floor(lengthInMs / 60000);
     const secs = ((lengthInMs % 60000) / 1000).toFixed(0);

@@ -5,12 +5,15 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import ResultsList from '../../components/ResultsList/ResultsList';
 import Player from "../../components/Player/Player";
 
+import './Home.scss';
+
 const Home = () => {
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [noResults, setNoResults] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   // useEffect(() => {
   //   results && showResults(results);
@@ -71,17 +74,19 @@ const Home = () => {
   }
 
   const handleClickItem = (item) => {
+    setShowModal(true);
     setCurrentItem(item);
   }
   
   const hidePlayer =() => {
-    setCurrentItem(null)
+    setShowModal(false);
+    setCurrentItem(null);
   }
 
   return (
     <div className="page-container">
       <div className="page-content">
-        <SearchBar onClick={handleSearchSubmit} />
+        <SearchBar onClick={handleSearchSubmit} className="search-bar" />
         <ResultsList
           results={results}
           onClickItem={handleClickItem}
@@ -92,7 +97,7 @@ const Home = () => {
         <Player
           item={currentItem}
           title={""}
-          show={currentItem ? true : false}
+          show={showModal}
           onHide={hidePlayer}
         />
       </div>
