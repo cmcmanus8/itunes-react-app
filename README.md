@@ -20,6 +20,7 @@ Clicking on a result brings a player modal which enables you to see the cover de
 e.g Mocha and Chai for unit or e2e testing across browsers and platforms.
 - Deploy app
 - Add informative errors to be displayed in front end
+- Styling, animations on results loading
 
 ## Running the app locally
 
