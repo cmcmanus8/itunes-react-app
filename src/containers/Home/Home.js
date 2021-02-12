@@ -20,36 +20,6 @@ const Home = () => {
     showPlayerHandler(currentItem, currentItemIndex);
   }, [currentItemIndex]);
 
-  // const getResults = async (searchData) => {
-  //   try {
-  //     console.log(searchData);
-  //     const { data } = await axios.get(`https://itunes.apple.com/search?term=${searchData}&limit=50&entity=song`);
-
-  //     console.log(data);
-  //     setResults(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   localStorage.setItem('searchData', searchData);
-  //   getResults(searchData);
-  // }
-
-  // const handleChange = (e) => {
-  //   setSearchData(e.target.value);
-  //   localStorage.setItem('searchData', e.target.value);
-  //   // getResults(e.target.value);
-  // }
-
-  // const showResults = (results) => (
-  //   <div>
-  //     {results && "Results"}
-  //   </div>
-  //   )
-
   const handleSearchSubmit = async (searchData) => {
     setLoading(true);
     setError(false);
