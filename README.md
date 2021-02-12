@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+![alt text](https://github.com/cmcmanus8/itunes-react-app/blob/main/src/images/screenshot.png?raw=true)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# iTunes React App
 
-## Available Scripts
+This is a SPA making use of the public iTunes API built in React with Hooks.
 
-In the project directory, you can run:
+## Objectives
 
-### `yarn start`
+### The main functionalities are:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Initial view\
+Search bar where you can enter the terms (whether artists, songs, albums, genres ...). 
+- Results view\
+Search results listed on the same page, showing the song title and artist, and more in detail, the album title, release date, cover thumbnail, song length, genre and price. Offers ability to sort the list over these last three fields.
+- Player view\
+Clicking on a result brings a player modal which enables you to see the cover detail, basic information about the song and the basic controls to listen the song, play and pause, and skip to the previous and next song in the list of search results. (NOTE: the skip function deoes not work fully as intended, future work to debug and fix this). This modal also has share buttons to several social networks.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Further work to be done:
+- Testing! Write unit, integration and e2e tests to check components, functionality for user flow.
+e.g Mocha and Chai for unit or e2e testing across browsers and platforms.
+- Deploy app
+- Add informative errors to be displayed in front end
 
-### `yarn test`
+## Running the app locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### via Docker
+- Ensure Dockerfile is included from repoo.
+- Open terminal in project directory.
+- Run `docker build -t itunes-app-image .` to build the docker image.
+- Run `docker images | grep itunes-app-image` to confirm image is up.
+- Run `docker run -it -p 3000:3000 itunes-app-image` to run application in docker container on port 3000.
+- Message should display to confirm that you can now view the app in the browser.
+- Navigate to the Local link in your browser.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### via yarn
+- Run `git clone https://github.com/cmcmanus8/itunes-react-app.git`
+- Run `yarn` to download relevant packages.
+- Open terminal and navigate to project directory, run `yarn start` to run app in development mode.
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

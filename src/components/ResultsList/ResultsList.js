@@ -9,7 +9,6 @@ const ResultsList = ({ loading, onClickItem, results, noResults, error }) => {
   const [resultsSorted, setResultsSorted] = useState([]);
   const [sortType, setSortType] = useState('genre')
 
-  // TODO: look at better way of carrying out this functionality
   useEffect(() => {
     const sortResults = (type) => {
       const types = {
@@ -24,7 +23,7 @@ const ResultsList = ({ loading, onClickItem, results, noResults, error }) => {
     };
 
     sortResults(sortType);
-  }, [sortType]);
+  }, [sortType, results]);
 
 
 
@@ -38,7 +37,7 @@ const ResultsList = ({ loading, onClickItem, results, noResults, error }) => {
             <div className="results-wrapper">
               {results && (
                 <div className="sort-wrapper">
-                  Sort by: (select to view results)
+                  Sort by:
                   <select onChange={(e) => setSortType(e.target.value)}>
                     <option value="genre">Genre</option>
                     <option value="duration">Duration</option>
