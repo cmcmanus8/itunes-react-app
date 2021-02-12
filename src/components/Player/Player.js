@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
@@ -13,7 +13,6 @@ import {
   TwitterIcon,
   WhatsappIcon
 } from 'react-share';
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 import './Player.scss';
 
@@ -40,7 +39,6 @@ const Player = ({ item, show, onHide, onClick, index, resultsSize }) => {
       show={show}
       aria-labelledby="contained-modal-title-vcenter"
       onHide={onHide}
-      // size="sm"
       centered
       backdrop="static"
       keyboard={false}
@@ -101,7 +99,5 @@ const Player = ({ item, show, onHide, onClick, index, resultsSize }) => {
     </Modal>
   )
 };
-
-// cover detail, song, artist, share button, play pauase, skip previous next
 
 export default Player;

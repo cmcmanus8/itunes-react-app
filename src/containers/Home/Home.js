@@ -25,6 +25,7 @@ const Home = () => {
     setError(false);
 
     try {
+      // fetch song data with 50 result limit
       const { data } = await axios.get(`https://itunes.apple.com/search?term=${searchData}&limit=50&entity=song`);
 
       if (data.resultCount === 0) {
@@ -42,6 +43,7 @@ const Home = () => {
     }
   }
 
+  // handler for setting current item for modal display
   const handleClickItem = (item) => {
     const indexOfCurrentItem = results.map((result) => result.trackId).indexOf(item.trackId)
     setShowModal(true);

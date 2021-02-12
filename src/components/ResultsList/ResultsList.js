@@ -9,6 +9,7 @@ const ResultsList = ({ loading, onClickItem, results, noResults, error }) => {
   const [resultsSorted, setResultsSorted] = useState([]);
   const [sortType, setSortType] = useState('genre')
 
+  // TODO: look at better way of carrying out this functionality
   useEffect(() => {
     const sortResults = (type) => {
       const types = {
