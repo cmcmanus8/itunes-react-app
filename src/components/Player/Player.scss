@@ -1,39 +1,117 @@
 @import "../../styles/colors.scss";
 
-.modal-wrapper {
-  // position: absolute;
-  // z-index: 1000;
-  // margin: auto;
-  // top: 50%;
-  // border: 1px solid red;
+.modal-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  .modal-content {
+    border-radius: 20px;
+    background: linear-gradient(-45deg, $lighter-grey, $light-grey, $aqua, $white);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+
+    @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+    }
+  }
+
+  .header {
+    border-bottom: none;
+
+    @media screen and (max-width: 425px) {
+      padding-bottom: 0;
+    }
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .modal-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .modal-image {
+        border-radius: 20px;
+        margin-bottom: 10px;
+        max-height: 300px;
+        max-width: 300px;
+
+        @media screen and (max-width: 425px) {
+          height: 200px;
+        }
+      }
+
+      .modal-song-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        overflow: hidden;
+      }
+
+      .modal-artist {
+        margin-bottom: 10px;
+        font-size: 1rem;
+        color: $medium-grey;
+      }
+    }
+
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 10px;
+
+      button {
+        margin: auto 5px;
+        border: none;
+        background: none;
+        font-size: 2rem;
+        border-radius: 50%;
+        width: 30px;
+        color: $white;
+        
+        &:hover {
+          color: black;
+        }
+      }
+
+      .player-audio {
+        max-width: 60vw;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .close-icon {
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    color: $white;
+    cursor: pointer;
+    box-shadow: 0 3px 6px 0 $white;
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
+.share-wrapper {
+  padding: 5px;
 
-// .modal-content {
-//   .closeIcon {
-//     width: 21px;
-//     height: 21px;
-//     border-radius: 50%;
-//     box-shadow: 0 3px 6px 0 rgba(238, 75, 75, 0.35);
-//     cursor: pointer;
-//   }
-//   .modal-body {
-//     padding-top:0;
-//     padding-bottom:1.5rem;
-//     .form-group {
-//       .form-control {
-//         border:none;
-//       }
-//     }
-//   }
-//   .header {
-//     border-bottom: none;
-//     .modal-title {
-//       width: 100%;
-//       font-family: GothamRounded-Book, sans-serif;
-//       font-weight: 500;
-//       text-align: center;
-//       margin-top:18px;
-//     }
-//   }
-// }
+  > button {
+    margin: 5px;
+  }
+}

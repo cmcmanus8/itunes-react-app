@@ -56,14 +56,12 @@ const Home = () => {
 
     try {
       const { data } = await axios.get(`https://itunes.apple.com/search?term=${searchData}&limit=50&entity=song`);
-      console.log(data);
 
       if (data.resultCount === 0) {
         setNoResults(true)
       } else {
         setNoResults(false);
         setResults(data.results);
-        console.log(data.results);
       }
 
     } catch (error) {

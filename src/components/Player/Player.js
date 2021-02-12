@@ -13,6 +13,7 @@ import {
   TwitterIcon,
   WhatsappIcon
 } from 'react-share';
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 import './Player.scss';
 
@@ -29,77 +30,75 @@ const Player = ({ item, show, onHide, onClick, index, resultsSize }) => {
     onClick("prev", index);
   }
 
-  console.log(resultsSize);
   const showPrev = (index > 0)
   const showNext = (index < resultsSize)
 
   const shareTitle = "Check what I'm listening to!";
 
   return (
-    <div className="modal-wrapper">
-      <Modal
-        show={show}
-        aria-labelledby="contained-modal-title-vcenter"
-        onHide={onHide}
-        size="lg"
-        centered
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header className="header">
-          <Modal.Title id="contained-modal-title-vcenter"></Modal.Title>
-          <FontAwesomeIcon icon={faTimesCircle} onClick={() => onHide()} />
-        </Modal.Header>
-        <Modal.Body>
-          <div className="modal-details">
-            {!imageToDisplay ?  (
-            <FontAwesomeIcon className="loading-icon" icon={faHeadphonesAlt} />
-            ) : (
-              <img className="modal-image" src={imageToDisplay} alt={item && item.artistName} />
-            )}
-            <div className="modal-song-title">{item && item.trackName}</div>
-            <div className="modal-artist">{item && item.artistName}</div>
-          </div>
-          <div className="audio-controls">
-            {showPrev && <button className="prev-button" onClick={prevHandler}>&#171;</button>}
-            <audio
-              className="player-audio"
-              controls
-              src={item && item.previewUrl}
-            >
-              Your browser does not support the audio element.
-            </audio>
-            {showNext && <button className="next-button" onClick={nextHandler}>&#187;</button>}
-          </div>
-          <div className="share-wrapper">
-            <FacebookShareButton
-              quote={shareTitle}
-              url={item && item.trackViewUrl}
-            >
-              <FacebookIcon size={25} round />
-            </FacebookShareButton>
-            <RedditShareButton
-              title={shareTitle}
-              url={item && item.trackViewUrl}
-            >
-              <RedditIcon  size={25} round />
-            </RedditShareButton>
-            <TwitterShareButton
-              title={shareTitle}
-              url={item && item.trackViewUrl}
-            >
-              <TwitterIcon  size={25} round />
-            </TwitterShareButton>
-            <WhatsappShareButton
-              title={shareTitle}
-              url={item && item.trackViewUrl}
-            >
-              <WhatsappIcon  size={25} round />
-            </WhatsappShareButton>
-          </div>
-        </Modal.Body>
-      </Modal>
-    </div>
+    <Modal
+      show={show}
+      aria-labelledby="contained-modal-title-vcenter"
+      onHide={onHide}
+      // size="sm"
+      centered
+      backdrop="static"
+      keyboard={false}
+      className="modal-custom"
+    >
+      <Modal.Header className="header">
+        <Modal.Title id="contained-modal-title-vcenter"></Modal.Title>
+        <FontAwesomeIcon className="close-icon" icon={faTimesCircle} onClick={() => onHide()} />
+      </Modal.Header>
+      <Modal.Body>
+        <div className="modal-details">
+          {!imageToDisplay ?  (
+          <FontAwesomeIcon className="loading-icon" icon={faHeadphonesAlt} />
+          ) : (
+            <img className="modal-image" src={imageToDisplay} alt={item && item.artistName} />
+          )}
+          <div className="modal-song-title">{item && item.trackName}</div>
+          <div className="modal-artist">{item && item.artistName}</div>
+        </div>
+        <div className="audio-controls">
+          {showPrev && <button className="prev-button" onClick={prevHandler}>&#171;</button>}
+          <audio
+            className="player-audio"
+            controls
+            src={item && item.previewUrl}
+          >
+            Your browser does not support the audio element.
+          </audio>
+          {showNext && <button className="next-button" onClick={nextHandler}>&#187;</button>}
+        </div>
+        <div className="share-wrapper">
+          <FacebookShareButton
+            quote={shareTitle}
+            url={item && item.trackViewUrl}
+          >
+            <FacebookIcon size={25} round />
+          </FacebookShareButton>
+          <RedditShareButton
+            title={shareTitle}
+            url={item && item.trackViewUrl}
+          >
+            <RedditIcon  size={25} round />
+          </RedditShareButton>
+          <TwitterShareButton
+            title={shareTitle}
+            url={item && item.trackViewUrl}
+          >
+            <TwitterIcon  size={25} round />
+          </TwitterShareButton>
+          <WhatsappShareButton
+            title={shareTitle}
+            url={item && item.trackViewUrl}
+          >
+            <WhatsappIcon  size={25} round />
+          </WhatsappShareButton>
+        </div>
+      </Modal.Body>
+    </Modal>
   )
 };
 
