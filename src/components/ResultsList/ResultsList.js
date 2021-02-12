@@ -11,8 +11,8 @@ const ResultsList = ({ loading, onClickItem, results, noResults, error }) => {
       {loading ? (
         <FontAwesomeIcon className="loading-icon" icon={faHeadphonesAlt} />
         ) : (
-        error ? "Error getting results..." : (
-          noResults ? "No results found..." : (
+        error ? (<p>Error getting results...</p>): (
+          noResults ? (<p>No results found...</p>): (
             <ul className="results-list">
               {(results || []).map((result) => (
                 <ResultItem key={result.trackId} item={result} onClickItem={onClickItem} />

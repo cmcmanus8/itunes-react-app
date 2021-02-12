@@ -29,7 +29,7 @@ const SearchBar = ({ onClick, results }) => {
 
   return (
     <div className={`search-container ${results && "results"}`}>
-      {console.log(results)}
+      {/* {console.log(results)} */}
       <input
         id="search"
         type="search"

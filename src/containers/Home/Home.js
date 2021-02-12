@@ -13,11 +13,12 @@ const Home = () => {
   const [error, setError] = useState(false);
   const [noResults, setNoResults] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
+  const [currentItemIndex, setCurrentItemIndex] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  // useEffect(() => {
-  //   results && showResults(results);
-  // }, [results]);
+  useEffect((currentItem, currentItemIndex) => {
+    showPlayerHandler(currentItem, currentItemIndex);
+  }, [currentItemIndex]);
 
   // const getResults = async (searchData) => {
   //   try {
@@ -74,34 +75,60 @@ const Home = () => {
   }
 
   const handleClickItem = (item) => {
+    const indexOfCurrentItem = results.map((result) => result.trackId).indexOf(item.trackId)
     setShowModal(true);
     setCurrentItem(item);
+    setCurrentItemIndex(indexOfCurrentItem);
   }
   
-  const hidePlayer =() => {
+  const hidePlayer = () => {
     setShowModal(false);
     setCurrentItem(null);
   }
 
+  // TODO: find prettier way of carrying this out! debug with more time
+  const handleNextPrev = (action, index) => {
+    if (action === 'next' && index !== (results.length - 1)) {
+      setCurrentItem(results[index + 1])
+      setCurrentItemIndex(index + 1);
+    }
+    if (action === 'prev' && index !== 0) {
+      setCurrentItem(results[index - 1])
+      setCurrentItem(results[index - 1])
+      setCurrentItemIndex(index + 1);
+    }
+  }
+
+  const showPlayerHandler = (item, index) => {
+    return (
+      <Player
+        item={item}
+        index={index}
+        resultsSize={results && results.length}
+        title={currentItem}
+        show={showModal}
+        onHide={hidePlayer}
+        onClick={handleNextPrev}
+      />
+    )
+  }
+
   return (
-    <div className={`page-container ${results && "results-shown"}`}>
-      <div className="page-content">
-        <SearchBar onClick={handleSearchSubmit} className="search-bar" results={results} />
-        <ResultsList
-          results={results}
-          onClickItem={handleClickItem}
-          loading={loading} 
-          noResults={noResults}
-          error={error}
-        />
-        <Player
-          item={currentItem}
-          title={""}
-          show={showModal}
-          onHide={hidePlayer}
-        />
+    <>
+      <div className={`page-container ${results && "results-shown"}`}>
+        <div className="page-content">
+          <SearchBar onClick={handleSearchSubmit} className="search-bar" results={results} />
+          <ResultsList
+            results={results}
+            onClickItem={handleClickItem}
+            loading={loading} 
+            noResults={noResults}
+            error={error}
+          />
+        </div>
       </div>
-    </div>
+      {showPlayerHandler(currentItem, currentItemIndex)}
+    </>
   );
 };
 

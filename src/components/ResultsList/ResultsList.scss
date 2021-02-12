@@ -6,10 +6,14 @@
   max-width: 90vw;
   max-height: 90vh;
   margin: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   border: none;
   border-radius: 20px;
+
+  p {
+    font-size: 1.5rem;
+  }
 
   .loading-icon {
     font-size: 4rem;
