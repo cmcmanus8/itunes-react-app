@@ -3,6 +3,16 @@ import { Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
+import { 
+  FacebookShareButton,
+  RedditShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  RedditIcon,
+  TwitterIcon,
+  WhatsappIcon
+} from 'react-share';
 
 import './Player.scss';
 
@@ -22,6 +32,8 @@ const Player = ({ item, show, onHide, onClick, index, resultsSize }) => {
   console.log(resultsSize);
   const showPrev = (index > 0)
   const showNext = (index < resultsSize)
+
+  const shareTitle = "Check what I'm listening to!";
 
   return (
     <div className="modal-wrapper">
@@ -59,7 +71,32 @@ const Player = ({ item, show, onHide, onClick, index, resultsSize }) => {
             </audio>
             {showNext && <button className="next-button" onClick={nextHandler}>&#187;</button>}
           </div>
-          <button>Share</button>
+          <div className="share-wrapper">
+            <FacebookShareButton
+              quote={shareTitle}
+              url={item && item.trackViewUrl}
+            >
+              <FacebookIcon size={25} round />
+            </FacebookShareButton>
+            <RedditShareButton
+              title={shareTitle}
+              url={item && item.trackViewUrl}
+            >
+              <RedditIcon  size={25} round />
+            </RedditShareButton>
+            <TwitterShareButton
+              title={shareTitle}
+              url={item && item.trackViewUrl}
+            >
+              <TwitterIcon  size={25} round />
+            </TwitterShareButton>
+            <WhatsappShareButton
+              title={shareTitle}
+              url={item && item.trackViewUrl}
+            >
+              <WhatsappIcon  size={25} round />
+            </WhatsappShareButton>
+          </div>
         </Modal.Body>
       </Modal>
     </div>
