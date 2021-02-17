@@ -3,16 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
-import { 
-  FacebookShareButton,
-  RedditShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-  FacebookIcon,
-  RedditIcon,
-  TwitterIcon,
-  WhatsappIcon
-} from 'react-share';
+import SocialShare from './SocialShare';
 
 import './Player.scss';
 
@@ -21,17 +12,22 @@ const Player = ({ item, show, onHide, onClick, index, resultsSize }) => {
   // amend artwork for larger display
   const imageToDisplay = item && item.artworkUrl100.slice(0, -11).concat("300x300bb.jpg");
 
-  const nextHandler = () => {
-    onClick("next", index);
+  /* --- Handler for clicking next or prev buttons --- */
+  const clickHandler = (e) => {
+    onClick(e.target.id, index);
   }
 
-  const prevHandler = () => {
-    onClick("prev", index);
+  /* --- Handler for showing next or prev buttons --- */
+  const showButton = (buttonId) => {
+    if (buttonId === "next") {
+      return index < resultsSize - 1
+    }
+    if (buttonId === "prev") {
+      return index > 0
+    }
   }
 
-  const showPrev = (index > 0)
-  const showNext = (index < resultsSize)
-
+  // Setting text for social share
   const shareTitle = "Check what I'm listening to!";
 
   return (
@@ -59,7 +55,11 @@ const Player = ({ item, show, onHide, onClick, index, resultsSize }) => {
           <div className="modal-artist">{item && item.artistName}</div>
         </div>
         <div className="audio-controls">
-          {showPrev && <button className="prev-button" onClick={prevHandler}>&#171;</button>}
+          {showButton("prev", index) ? 
+            <button id="prev" className="prev-button" onClick={((e) => clickHandler(e))}>&#171;</button>
+            :
+            <div className="controls-blank"></div>
+          }
           <audio
             className="player-audio"
             controls
@@ -67,34 +67,13 @@ const Player = ({ item, show, onHide, onClick, index, resultsSize }) => {
           >
             Your browser does not support the audio element.
           </audio>
-          {showNext && <button className="next-button" onClick={nextHandler}>&#187;</button>}
+          {showButton("next", index) ? 
+            <button id="next" className="next-button" onClick={((e) => clickHandler(e))}>&#187;</button>
+            :
+            <div className="controls-blank"></div>  
+          }
         </div>
-        <div className="share-wrapper">
-          <FacebookShareButton
-            quote={shareTitle}
-            url={item && item.trackViewUrl}
-          >
-            <FacebookIcon size={25} round />
-          </FacebookShareButton>
-          <RedditShareButton
-            title={shareTitle}
-            url={item && item.trackViewUrl}
-          >
-            <RedditIcon  size={25} round />
-          </RedditShareButton>
-          <TwitterShareButton
-            title={shareTitle}
-            url={item && item.trackViewUrl}
-          >
-            <TwitterIcon  size={25} round />
-          </TwitterShareButton>
-          <WhatsappShareButton
-            title={shareTitle}
-            url={item && item.trackViewUrl}
-          >
-            <WhatsappIcon  size={25} round />
-          </WhatsappShareButton>
-        </div>
+        <SocialShare shareTitle={shareTitle} item={item} size={25} />
       </Modal.Body>
     </Modal>
   )

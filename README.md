@@ -21,6 +21,7 @@ e.g Mocha and Chai for unit or e2e testing across browsers and platforms.
 - Deploy app
 - Add informative errors to be displayed in front end
 - Styling, animations on results loading
+- Cleaner state management like Redux
 
 ## Running the app locally
 
