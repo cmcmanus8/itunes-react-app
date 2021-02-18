@@ -91,8 +91,27 @@ const Home = () => {
       price: 'trackPrice'
     }
     const sortProperty = types[type];
-    const sorted = results && ([...results].sort((a,b) => b[sortProperty] - a[sortProperty]));
-    setResults(sorted);
+  
+    if (type === "genre") {
+      const sorted = results && ([...results].sort((a,b) => {
+        let genreA = a[sortProperty].toUpperCase();
+        let genreB = b[sortProperty].toUpperCase();
+        if (genreA < genreB) {
+          return -1;
+        }
+        if (genreA > genreB) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      }))
+      setResults(sorted);
+    } else {
+      const sorted = results && ([...results].sort((a,b) => b[sortProperty] - a[sortProperty]));
+      setResults(sorted);
+
+    }
   }
 
   return (
