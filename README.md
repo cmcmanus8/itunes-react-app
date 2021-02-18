@@ -26,7 +26,7 @@ e.g Mocha and Chai for unit or e2e testing across browsers and platforms. Jest f
 ## Running the app locally
 
 ### via Docker
-- Ensure Dockerfile is included from repoo.
+- Ensure Dockerfile is included from repo.
 - Open terminal in project directory.
 - Run `docker build -t itunes-app-image .` to build the docker image.
 - Run `docker images | grep itunes-app-image` to confirm image is up.
