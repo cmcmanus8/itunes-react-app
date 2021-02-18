@@ -17,7 +17,7 @@ Clicking on a result brings a player modal which enables you to see the cover de
 
 ### Further work to be done:
 - Testing! Write unit, integration and e2e tests to check components, functionality for user flow.
-e.g Mocha and Chai for unit or e2e testing across browsers and platforms.
+e.g Mocha and Chai for unit or e2e testing across browsers and platforms. Jest for testing hooks.
 - Deploy app
 - Add informative errors to be displayed in front end
 - Styling, animations on results loading
