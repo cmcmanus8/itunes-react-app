@@ -4,32 +4,31 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './SearchBar.scss';
 
+/* Search Bar Component */
+
 const SearchBar = ({ onClick, results }) => {
   const [formInput, setFormInput] = useState('');
-  const [searchData, setSearchData] = useState([]);
 
+  /* --- Handler for pressing enter --- */
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
         handleSearch(formInput)
     }
   }
 
+  /* --- onChange handler --- */
   const handleChange = (e) => {
     setFormInput(e.target.value);
   }
 
+  /* --- Handler for submitting search form --- */
   const handleSearch = () => {
-    // remove whitespace
-    const searchSubmit = formInput.trim();
-    setSearchData([...searchData, searchSubmit]);
-
-    // pass to parent
+    const searchSubmit = formInput.trim(); // remove whitespace
     onClick(searchSubmit);
   };
 
   return (
     <div className={`search-container ${results && "results"}`}>
-      {/* {console.log(results)} */}
       <input
         id="search"
         type="search"

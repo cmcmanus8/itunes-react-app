@@ -13,19 +13,21 @@ Search bar where you can enter the terms (whether artists, songs, albums, genres
 - Results view\
 Search results listed on the same page, showing the song title and artist, and more in detail, the album title, release date, cover thumbnail, song length, genre and price. Offers ability to sort the list over these last three fields.
 - Player view\
-Clicking on a result brings a player modal which enables you to see the cover detail, basic information about the song and the basic controls to listen the song, play and pause, and skip to the previous and next song in the list of search results. (NOTE: the skip function deoes not work fully as intended, future work to debug and fix this). This modal also has share buttons to several social networks.
+Clicking on a result brings a player modal which enables you to see the cover detail, basic information about the song and the basic controls to listen the song, play and pause, and skip to the previous and next song in the list of search results. This modal also has share buttons to several social networks.
 
 ### Further work to be done:
 - Testing! Write unit, integration and e2e tests to check components, functionality for user flow.
-e.g Mocha and Chai for unit or e2e testing across browsers and platforms.
+e.g Mocha and Chai for unit or e2e testing across browsers and platforms. Jest for testing hooks.
 - Deploy app
 - Add informative errors to be displayed in front end
 - Styling, animations on results loading
+- Cleaner state management like Redux
 
 ## Running the app locally
 
 ### via Docker
-- Ensure Dockerfile is included from repoo.
+- Run `git clone https://github.com/cmcmanus8/itunes-react-app.git`
+- Ensure Dockerfile is included from repo.
 - Open terminal in project directory.
 - Run `docker build -t itunes-app-image .` to build the docker image.
 - Run `docker images | grep itunes-app-image` to confirm image is up.

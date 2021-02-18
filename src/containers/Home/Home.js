@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -16,16 +16,13 @@ const Home = () => {
   const [currentItemIndex, setCurrentItemIndex] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect((currentItem, currentItemIndex) => {
-    showPlayerHandler(currentItem, currentItemIndex);
-  }, [currentItemIndex]);
-
+  /* --- Handler for search entered --- */
   const handleSearchSubmit = async (searchData) => {
     setLoading(true);
     setError(false);
 
     try {
-      // fetch song data with 50 result limit
+      // fetch songs from itunes api with 50 result limit
       const { data } = await axios.get(`https://itunes.apple.com/search?term=${searchData}&limit=50&entity=song`);
 
       if (data.resultCount === 0) {
@@ -43,20 +40,23 @@ const Home = () => {
     }
   }
 
-  // handler for setting current item for modal display
+  /* --- Handler for clicking item and setting show Player Modal --- */
   const handleClickItem = (item) => {
     const indexOfCurrentItem = results.map((result) => result.trackId).indexOf(item.trackId)
     setShowModal(true);
     setCurrentItem(item);
     setCurrentItemIndex(indexOfCurrentItem);
   }
-  
-  const hidePlayer = () => {
+
+  /* --- Handle hiding Player Modal --- */
+  const handleHidePlayer = () => {
     setShowModal(false);
     setCurrentItem(null);
+    setCurrentItemIndex(null);
   }
 
-  // TODO: find prettier way of carrying this out! debug with more time
+  /* --- Handle skipping or going back songs --- */
+  // TODO: find prettier way of carrying this out!
   const handleNextPrev = (action, index) => {
     if (action === 'next' && index !== (results.length - 1)) {
       setCurrentItem(results[index + 1])
@@ -64,12 +64,12 @@ const Home = () => {
     }
     if (action === 'prev' && index !== 0) {
       setCurrentItem(results[index - 1])
-      setCurrentItem(results[index - 1])
-      setCurrentItemIndex(index + 1);
+      setCurrentItemIndex(index - 1);
     }
   }
 
-  const showPlayerHandler = (item, index) => {
+  /* --- Handle show Player Modal --- */
+  const handleShowPlayer = (item, index) => {
     return (
       <Player
         item={item}
@@ -77,10 +77,41 @@ const Home = () => {
         resultsSize={results && results.length}
         title={currentItem}
         show={showModal}
-        onHide={hidePlayer}
+        onHide={handleHidePlayer}
         onClick={handleNextPrev}
       />
     )
+  }
+
+  /* --- Handle sorting songs by given type --- */
+  const handleSort = (type) => {
+    const types = {
+      duration: 'trackTimeMillis',
+      genre: 'primaryGenreName',
+      price: 'trackPrice'
+    }
+    const sortProperty = types[type];
+  
+    if (type === "genre") {
+      const sorted = results && ([...results].sort((a,b) => {
+        let genreA = a[sortProperty].toUpperCase();
+        let genreB = b[sortProperty].toUpperCase();
+        if (genreA < genreB) {
+          return -1;
+        }
+        if (genreA > genreB) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      }))
+      setResults(sorted);
+    } else {
+      const sorted = results && ([...results].sort((a,b) => b[sortProperty] - a[sortProperty]));
+      setResults(sorted);
+
+    }
   }
 
   return (
@@ -94,10 +125,11 @@ const Home = () => {
             loading={loading} 
             noResults={noResults}
             error={error}
+            handleSort={handleSort}
           />
         </div>
       </div>
-      {showPlayerHandler(currentItem, currentItemIndex)}
+      {handleShowPlayer(currentItem, currentItemIndex)}
     </>
   );
 };

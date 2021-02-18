@@ -13,24 +13,28 @@ import './ResultItem.scss';
   Genre: primaryGenreName
   Price: trackPrice
 */
+
 const ResultItem = ({ item, onClickItem }) => {
   const [moreDetails, setMoreDetails] = useState(false);
 
+  /* --- Handler for clicking item --- */
+  // callback function was used to allow item to load and display in Player Modal
   const handleClick = useCallback(() => {
     onClickItem(item);
   }, [onClickItem, item]);
 
+  /* --- Handler for More details button  --- */
   const handleMoreDetails = () => {
     setMoreDetails(!moreDetails);
   }
 
+  /* --- Format attributes of song  --- */
   const dateToDisplay = dateFormat(Date.parse(item.releaseDate), "yyyy");
   const songLength = (lengthInMs) => {
     const mins = Math.floor(lengthInMs / 60000);
     const secs = ((lengthInMs % 60000) / 1000).toFixed(0);
     return `${mins}:${secs < 10 ? '0':''}${secs}`;
   }
-  // amend artwork for larger display
   const imageToDisplay = item.artworkUrl100.slice(0, -11).concat("150x150bb.jpg");
 
   return (
